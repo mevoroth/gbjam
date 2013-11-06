@@ -17,6 +17,7 @@ namespace GameJam.GameObjects
 	class Player : GameObject
 	{
 		const int HP = 1;
+		const float SPEED = 2f;
 
 		Texture2D sprite;
 
@@ -31,6 +32,10 @@ namespace GameJam.GameObjects
 		public override void Initialize()
 		{
 			sprite = game.Content.Load<Texture2D>("player");
+			Size = new Vector2(
+				sprite.Width,
+				sprite.Height
+			);
 		}
 		public void LoadContent(SpriteBatch sb)
 		{
@@ -41,8 +46,8 @@ namespace GameJam.GameObjects
 		}
 		public override void Update(GameTime gameTime)
 		{
-			int x = 0;
-			int y = 0;
+			float x = 0;
+			float y = 0;
 
 			/**
 			 * CONTROLS
@@ -71,12 +76,20 @@ namespace GameJam.GameObjects
 			{
 				// SECONDARY WEAPON
 			}
+
+			/**
+			 * UPDATE
+			 */
+			Position = new Vector2(
+				Position.X + x*SPEED,
+				Position.Y + y*SPEED
+			);
 		}
 		public override void Draw(GameTime gameTime)
 		{
 			SpriteBatch.Draw(
 				sprite,
-				new Rectangle(0, 0, sprite.Width, sprite.Height),
+				new Rectangle((int)Position.X, (int)Position.Y, sprite.Width, sprite.Height),
 				Color.White
 			);
 		}
