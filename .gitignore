@@ -1,4 +1,5 @@
 *.suo
-GameJam/GameJamContent
+GameJam/GameJamContent/bin
+GameJam/GameJamContent/obj
 GameJam/GameJam/bin
 GameJam/GameJam/obj
