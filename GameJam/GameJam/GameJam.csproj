@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\AnimatedSprite.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Map.cs" />
     <Compile Include="GameObjects\Player.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Levels\Menu.cs" />
     <Compile Include="Levels\Stage.cs" />
     <Compile Include="Levels\Stage01.cs" />
+    <Compile Include="Levels\Stage01_Boss.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />

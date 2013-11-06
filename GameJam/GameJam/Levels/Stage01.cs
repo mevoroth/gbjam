@@ -16,6 +16,7 @@ namespace GameJam.Levels
 {
 	class Stage01 : AbstractStage
 	{
+		private static Vector2 StartPoint = new Vector2(72, 108);
 
 		public Stage01(Microsoft.Xna.Framework.Game g, GraphicsDeviceManager gdm)
 			: base(g, gdm)
@@ -24,11 +25,13 @@ namespace GameJam.Levels
 		public void Initialize()
 		{
 			base.Initialize();
+			LoadMap("stg01_background");
 		}
 
 		public void LoadContent(SpriteBatch sb)
 		{
 			base.LoadContent(sb);
+			Player.Position = StartPoint;
 		}
 
 		public override void UnloadContent()
@@ -39,6 +42,16 @@ namespace GameJam.Levels
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
+			Map.Position += new Vector2(
+				0, 1
+			);
+			if (Map.Position.Y >= 0)
+			{
+				Stage01_Boss stg = new Stage01_Boss(Game, GraphicsDeviceManager);
+				stg.Initialize();
+				stg.LoadContent(SpriteBatch);
+				((Game)Game).LoadStage(stg);
+			}
 		}
 
 		public override void Draw(GameTime gameTime)

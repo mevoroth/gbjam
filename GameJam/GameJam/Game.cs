@@ -43,6 +43,7 @@ namespace GameJam
 			graphics.PreferredBackBufferWidth = Size.WIDTH;
 			graphics.PreferredBackBufferHeight = Size.HEIGHT;
 			graphics.ApplyChanges();
+			this.IsFixedTimeStep = true;
 
 			stage.Initialize();
 

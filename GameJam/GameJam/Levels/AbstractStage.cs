@@ -22,9 +22,24 @@ namespace GameJam.Levels
 		LinkedList<GameObject> enemies = new LinkedList<GameObject>();
 		LinkedList<GameObject> enemiesshots = new LinkedList<GameObject>();
 
+		public GameObject Player
+		{
+			get { return player; }
+		}
+
 		public AbstractStage(Microsoft.Xna.Framework.Game g, GraphicsDeviceManager gdm)
 			: base(g, gdm)
 		{
+		}
+
+		public void LoadMap(string asset)
+		{
+			((Map)map).Initialize(asset);
+		}
+
+		public Map Map
+		{
+			get { return (Map)map; }
 		}
 
 		public override void Initialize()
@@ -32,7 +47,6 @@ namespace GameJam.Levels
 			player = new Player(this.Game, this.GraphicsDeviceManager);
 			map = new Map(this.Game, this.GraphicsDeviceManager);
 			player.Initialize();
-			map.Initialize();
 		}
 
 		public void LoadContent(SpriteBatch sb)
