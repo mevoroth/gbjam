@@ -69,7 +69,7 @@ namespace GameJam.Levels
 			{
 				pos.Y = 0;
 			}
-			else if (pos.Y + player.Size.Y >= Size.WIDTH)
+			else if (pos.Y + player.Size.Y >= Size.HEIGHT)
 			{
 				pos.Y = Size.HEIGHT - player.Size.Y;
 			}
@@ -98,6 +98,11 @@ namespace GameJam.Levels
 					// APPLY DAMAGE
 				}
 			}
+
+			/**
+			 * UPDATE
+			 */
+			player.Position = pos;
 		}
 
 		public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
