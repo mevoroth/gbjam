@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 using GameJam.Settings;
+using GameJam.Components;
 
 namespace GameJam.GameObjects
 {
@@ -19,7 +20,7 @@ namespace GameJam.GameObjects
 		const int HP = 1;
 		const float SPEED = 2f;
 
-		Texture2D sprite;
+		AnimatedSprite sprite;
 
 		private Microsoft.Xna.Framework.Game game;
 		private GraphicsDeviceManager gdm;
@@ -31,7 +32,8 @@ namespace GameJam.GameObjects
 		}
 		public override void Initialize()
 		{
-			sprite = game.Content.Load<Texture2D>("player");
+			sprite = new AnimatedSprite((Game)game, "player", 16);
+			//sprite = game.Content.Load<Texture2D>("player");
 			Size = new Vector2(
 				sprite.Width,
 				sprite.Height
@@ -80,16 +82,20 @@ namespace GameJam.GameObjects
 			/**
 			 * UPDATE
 			 */
+			// POSITION
 			Position = new Vector2(
 				Position.X + x*SPEED,
 				Position.Y + y*SPEED
 			);
+			// NEXT FRAME
+			sprite.next();
 		}
 		public override void Draw(GameTime gameTime)
 		{
 			SpriteBatch.Draw(
-				sprite,
+				sprite.Texture,
 				new Rectangle((int)Position.X, (int)Position.Y, sprite.Width, sprite.Height),
+				sprite.getFrame(),
 				Color.White
 			);
 		}

@@ -9,48 +9,44 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using GameJam.GameObjects;
+using GameJam.Settings;
 
-namespace GameJam.GameObjects
+namespace GameJam.Levels
 {
-	class Map : GameObject
+	class Stage01_Boss : AbstractStage
 	{
-		Microsoft.Xna.Framework.Game game;
-		GraphicsDeviceManager gdm;
-		Texture2D texture;
+		private static Vector2 StartPoint = new Vector2(72, 108);
 
-		public Map(Microsoft.Xna.Framework.Game g, GraphicsDeviceManager gdm)
+		public Stage01_Boss(Microsoft.Xna.Framework.Game g, GraphicsDeviceManager gdm)
+			: base(g, gdm)
 		{
-			game = g;
-			this.gdm = gdm;
 		}
 		public override void Initialize()
 		{
-			
+			base.Initialize();
 		}
-		public void Initialize(string map)
-		{
-			texture = game.Content.Load<Texture2D>(map);
-			Position = new Vector2(
-				0, Settings.Size.HEIGHT - texture.Height
-			);
-		}
+
 		public void LoadContent(SpriteBatch sb)
 		{
 			base.LoadContent(sb);
+			Player.Position = StartPoint;
+			LoadMap("stg01_background");
 		}
+
 		public override void UnloadContent()
 		{
+			base.UnloadContent();
 		}
+
 		public override void Update(GameTime gameTime)
 		{
+			base.Update(gameTime);
 		}
+
 		public override void Draw(GameTime gameTime)
 		{
-			SpriteBatch.Draw(
-				texture,
-				new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height),
-				Color.White
-			);
+			base.Draw(gameTime);
 		}
 	}
 }
