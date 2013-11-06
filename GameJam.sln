@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameJam", "GameJam\GameJam\GameJam.csproj", "{88DB72E3-C4AB-463E-9209-91898C7309FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameJamContent", "GameJam\GameJamContent\GameJamContent.contentproj", "{C45BD5DB-AF72-4C02-AC3B-4C27CE79CE94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88DB72E3-C4AB-463E-9209-91898C7309FA}.Debug|x86.ActiveCfg = Debug|x86
+		{88DB72E3-C4AB-463E-9209-91898C7309FA}.Debug|x86.Build.0 = Debug|x86
+		{88DB72E3-C4AB-463E-9209-91898C7309FA}.Release|x86.ActiveCfg = Release|x86
+		{88DB72E3-C4AB-463E-9209-91898C7309FA}.Release|x86.Build.0 = Release|x86
+		{C45BD5DB-AF72-4C02-AC3B-4C27CE79CE94}.Debug|x86.ActiveCfg = Debug|x86
+		{C45BD5DB-AF72-4C02-AC3B-4C27CE79CE94}.Debug|x86.Build.0 = Debug|x86
+		{C45BD5DB-AF72-4C02-AC3B-4C27CE79CE94}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
