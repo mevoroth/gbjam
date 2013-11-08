@@ -20,7 +20,12 @@ namespace GameJam.GameObjects
 		const int HP = 1;
 		const float SPEED = 2f;
 
-		AnimatedSprite sprite;
+		//AnimatedSprite sprite;
+		FixedSprite sprite_idle;
+		FixedSprite sprite_forward;
+		FixedSprite sprite_backward;
+		FixedSprite sprite_left;
+		FixedSprite sprite_right;
 
 		private Microsoft.Xna.Framework.Game game;
 		private GraphicsDeviceManager gdm;
@@ -32,7 +37,12 @@ namespace GameJam.GameObjects
 		}
 		public override void Initialize()
 		{
-			sprite = new AnimatedSprite((Game)game, "player", 16);
+			//sprite = new FixedSprite((Game)game, "player", 1000);
+			sprite_idle = new FixedSprite((Game)game, "player_idle", 1000);
+			sprite_forward = new FixedSprite((Game)game, "player_forward", 1000);
+			sprite_backward = new FixedSprite((Game)game, "player_backward", 1000);
+			sprite_left = new FixedSprite((Game)game, "player_left", 1000);
+			sprite_right = new FixedSprite((Game)game, "player_right", 1000);
 			//sprite = game.Content.Load<Texture2D>("player");
 			Size = new Vector2(
 				sprite.Width,
@@ -87,17 +97,20 @@ namespace GameJam.GameObjects
 				Position.X + x*SPEED,
 				Position.Y + y*SPEED
 			);
+			sprite.SetPosition(Position);
 			// NEXT FRAME
 			sprite.next();
 		}
 		public override void Draw(GameTime gameTime)
 		{
-			SpriteBatch.Draw(
-				sprite.Texture,
-				new Rectangle((int)Position.X, (int)Position.Y, sprite.Width, sprite.Height),
-				sprite.getFrame(),
-				Color.White
-			);
+			//sprite.Draw(SpriteBatch);
+			((Game)game).Layers.Add(sprite);
+			//SpriteBatch.Draw(
+			//    sprite.Texture,
+			//    new Rectangle((int)Position.X, (int)Position.Y, sprite.Width, sprite.Height),
+			//    sprite.getFrame(),
+			//    Color.White
+			//);
 		}
 	}
 }

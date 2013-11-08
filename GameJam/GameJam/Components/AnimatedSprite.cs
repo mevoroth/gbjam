@@ -7,14 +7,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameJam.Components
 {
-	class AnimatedSprite
+	class AnimatedSprite : Layer
 	{
 		private Texture2D texture;
 		private int frames;
 		private int currentFrame = 0;
 		private int width;
 
-		public AnimatedSprite(Game game, string asset, int width)
+		public AnimatedSprite(Game game, string asset, int width, int priority)
+			: base(priority)
 		{
 			texture = game.Content.Load<Texture2D>(asset);
 			this.width = width;
@@ -34,7 +35,7 @@ namespace GameJam.Components
 		{
 			get { return texture; }
 		}
-		public void next()
+		public override void next()
 		{
 			currentFrame = (currentFrame + 1) % frames;
 		}
@@ -46,6 +47,10 @@ namespace GameJam.Components
 				width,
 				texture.Height
 			);
+		}
+		public override void Draw(SpriteBatch sb)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

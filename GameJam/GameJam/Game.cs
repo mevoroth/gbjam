@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 using GameJam.Settings;
 using GameJam.Levels;
+using GameJam.Components;
 
 namespace GameJam
 {
@@ -23,12 +24,20 @@ namespace GameJam
 		SpriteBatch spriteBatch;
 		Levels.Stage stage;
 
+		private SortedSet<Layer> layers;
+
+		public SortedSet<Layer> Layers
+		{
+			get { return layers; }
+		}
+
 		public Game()
 		{
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 
 			stage = new Levels.Menu(this, graphics);
+			layers = new SortedSet<Layer>(new Layer.LayerComparer());
 		}
 
 		/// <summary>
@@ -102,6 +111,12 @@ namespace GameJam
 			stage.Draw(gameTime);
 
 			base.Draw(gameTime);
+
+			for (int i = 0; i < layers.Count; ++i)
+			{
+				layers.ElementAt<Layer>(i).Draw(spriteBatch);
+			}
+
 			spriteBatch.End();
 		}
 

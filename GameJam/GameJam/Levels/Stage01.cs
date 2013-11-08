@@ -25,7 +25,13 @@ namespace GameJam.Levels
 		public void Initialize()
 		{
 			base.Initialize();
-			LoadMap("stg01_background");
+			//LoadMap("stg01_background");
+			LoadMap(new Components.Layer[] {
+				new Components.FixedSprite((Game)Game, "stg01_layer03", 10000),
+				new Components.ScrollingBackground((Game)Game, "stg01_layer02", 3, 9990),
+				new Components.ScrollingBackground((Game)Game, "stg01_layer01", 1, 990)
+			});
+			//LoadLayer();
 		}
 
 		public void LoadContent(SpriteBatch sb)
@@ -50,7 +56,7 @@ namespace GameJam.Levels
 				Stage01_Boss stg = new Stage01_Boss(Game, GraphicsDeviceManager);
 				stg.Initialize();
 				stg.LoadContent(SpriteBatch);
-				((Game)Game).LoadStage(stg);
+				//((Game)Game).LoadStage(stg);
 			}
 		}
 

@@ -108,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\AnimatedSprite.cs" />
+    <Compile Include="Components\FixedSprite.cs" />
+    <Compile Include="Components\Layer.cs" />
+    <Compile Include="Components\ScrollingBackground.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Map.cs" />
     <Compile Include="GameObjects\Player.cs" />

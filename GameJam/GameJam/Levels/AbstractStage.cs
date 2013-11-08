@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using GameJam.GameObjects;
 using GameJam.Settings;
+using GameJam.Components;
 
 namespace GameJam.Levels
 {
@@ -35,6 +36,11 @@ namespace GameJam.Levels
 		public void LoadMap(string asset)
 		{
 			((Map)map).Initialize(asset);
+		}
+
+		public void LoadMap(Layer[] layers)
+		{
+			((Map)map).Initialize(layers);
 		}
 
 		public Map Map
