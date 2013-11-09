@@ -109,15 +109,15 @@ namespace GameJam
 			spriteBatch.Begin();
 			// TODO : ajouter le code de dessin ici
 			stage.Draw(gameTime);
-
+			
 			base.Draw(gameTime);
 
 			for (int i = 0; i < layers.Count; ++i)
 			{
 				layers.ElementAt<Layer>(i).Draw(spriteBatch);
 			}
-
 			spriteBatch.End();
+			layers.Clear();
 		}
 
 		public void LoadStage(Stage stg)

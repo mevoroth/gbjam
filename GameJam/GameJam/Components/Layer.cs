@@ -13,11 +13,11 @@ namespace GameJam.Components
 		{
 			public int Compare(Layer l1, Layer l2)
 			{
-				if (l1.Priority > l2.Priority)
-					return -1;
+				//if (l1.Priority > l2.Priority)
+				//    return -1;
 				if (l1.Priority < l2.Priority)
 					return 1;
-				return 0;
+				return -1;
 			}
 		}
 		private int priority;
@@ -31,17 +31,13 @@ namespace GameJam.Components
 		public Vector2 Position
 		{
 			get { return position; }
+			set { position = value; }
 		}
 
 		public Layer(int priority)
 		{
 			// TODO: Complete member initialization
 			this.priority = priority;
-		}
-
-		public void SetPosition(Vector2 position)
-		{
-			this.position = position;
 		}
 
 		public abstract void next();

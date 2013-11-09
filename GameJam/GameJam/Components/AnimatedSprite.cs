@@ -14,6 +14,8 @@ namespace GameJam.Components
 		private int currentFrame = 0;
 		private int width;
 
+		private int framelength = 10;
+
 		public AnimatedSprite(Game game, string asset, int width, int priority)
 			: base(priority)
 		{
@@ -37,12 +39,12 @@ namespace GameJam.Components
 		}
 		public override void next()
 		{
-			currentFrame = (currentFrame + 1) % frames;
+			currentFrame = (currentFrame + 1) % (frames*framelength);
 		}
 		public Rectangle getFrame()
 		{
 			return new Rectangle(
-				currentFrame*width,
+				(int)(currentFrame / framelength) * width,
 				0,
 				width,
 				texture.Height
@@ -50,7 +52,12 @@ namespace GameJam.Components
 		}
 		public override void Draw(SpriteBatch sb)
 		{
-			throw new NotImplementedException();
+			sb.Draw(
+				texture,
+				new Rectangle((int)Position.X, (int)Position.Y, width, texture.Height),
+				getFrame(),
+				Color.White
+			);
 		}
 	}
 }

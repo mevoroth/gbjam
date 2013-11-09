@@ -35,7 +35,7 @@ namespace GameJam.GameObjects
 		}
 
 		abstract public void Initialize();
-		public void LoadContent(SpriteBatch sb)
+		public virtual void LoadContent(SpriteBatch sb)
 		{
 			spriteBatch = sb;
 		}

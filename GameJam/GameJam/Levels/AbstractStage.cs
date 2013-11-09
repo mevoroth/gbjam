@@ -48,6 +48,11 @@ namespace GameJam.Levels
 			get { return (Map)map; }
 		}
 
+		public LinkedList<GameObject> Enemies
+		{
+			get { return enemies; }
+		}
+
 		public override void Initialize()
 		{
 			player = new Player(this.Game, this.GraphicsDeviceManager);
@@ -70,6 +75,10 @@ namespace GameJam.Levels
 		{
 			map.Update(gameTime);
 			player.Update(gameTime);
+			foreach (GameObject go in enemies)
+			{
+				go.Update(gameTime);
+			}
 
 			/**
 			 * COLLISION
@@ -129,6 +138,10 @@ namespace GameJam.Levels
 		{
 			map.Draw(gameTime);
 			player.Draw(gameTime);
+			foreach (GameObject go in enemies)
+			{
+				go.Draw(gameTime);
+			}
 		}
 	}
 }
