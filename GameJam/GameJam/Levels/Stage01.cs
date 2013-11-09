@@ -273,6 +273,70 @@ namespace GameJam.Levels
 			m.Position = new Vector2(120, -1404);
 			Enemies.AddLast(m);
 
+			/**
+			 * SEVENTH WAVE
+			 */
+			// FIRST WAVE
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.S());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(72, -1548);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.S());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(72, -1580);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.S());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(72, -1612);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.S());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(72, -1644);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.S());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(72, -1676);
+			Enemies.AddLast(m);
+
+			// SECOND WAVE
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.S(-1));
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(72, -1708);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.S(-1));
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(72, -1740);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.S(-1));
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(72, -1772);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.S(-1));
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(72, -1804);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.S(-1));
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(72, -1836);
+			Enemies.AddLast(m);
+			Enemies.AddLast(m);
 		}
 
 		public void LoadContent(SpriteBatch sb)
