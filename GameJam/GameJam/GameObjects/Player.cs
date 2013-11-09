@@ -45,6 +45,12 @@ namespace GameJam.GameObjects
 		private StateX s_x = StateX.IDLE;
 		private StateY s_y = StateY.IDLE;
 
+		private bool primary = false;
+		public bool Primary
+		{
+			get { return primary; }
+		}
+
 		private Microsoft.Xna.Framework.Game game;
 		private GraphicsDeviceManager gdm;
 
@@ -117,10 +123,12 @@ namespace GameJam.GameObjects
 			{
 				++x;
 			}
-			if (Keyboard.GetState().IsKeyDown(Controls.Get.Primary))
-			{
-				// PRIMARY WEAPON
-			}
+			primary = Keyboard.GetState().IsKeyDown(Controls.Get.Primary);
+			//if (Keyboard.GetState().IsKeyDown(Controls.Get.Primary))
+			//{
+			//    // PRIMARY WEAPON
+			//    primary = true;
+			//}
 			if (Keyboard.GetState().IsKeyDown(Controls.Get.Secondary))
 			{
 				// SECONDARY WEAPON

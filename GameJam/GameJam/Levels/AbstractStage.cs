@@ -53,6 +53,11 @@ namespace GameJam.Levels
 			get { return enemies; }
 		}
 
+		public LinkedList<GameObject> PlayerShots
+		{
+			get { return playershots; }
+		}
+
 		public override void Initialize()
 		{
 			player = new Player(this.Game, this.GraphicsDeviceManager);
