@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameJam.Components;
+using GameJam.Settings;
 
 namespace GameJam.GameObjects
 {
@@ -12,18 +13,91 @@ namespace GameJam.GameObjects
 	{
 		public interface Movement
 		{
-			Vector2 getMovement();
+			Vector2 getMovement(Mob m);
 		}
 
 		public class Typical : Movement
 		{
-			#region Movement Membres
-
 			private Vector2 mv = new Vector2(0, 1);
 
-			public Vector2 getMovement()
+			#region Movement Membres
+
+			public Vector2 getMovement(Mob m)
 			{
 				return mv;
+			}
+
+			#endregion
+		}
+
+		public class DownLeft : Movement
+		{
+			private Vector2 mv = new Vector2(-1, 2);
+
+			#region Movement Membres
+
+			public Vector2 getMovement(Mob m)
+			{
+				return mv;
+			}
+
+			#endregion
+		}
+
+		public class DownRight : Movement
+		{
+			private Vector2 mv = new Vector2(1, 2);
+
+			#region Movement Membres
+
+			public Vector2 getMovement(Mob m)
+			{
+				return mv;
+			}
+
+			#endregion
+		}
+
+		public class U : Movement
+		{
+			private enum State
+			{
+				RIGHT_BRANCH,
+				TRANSITION,
+				LEFT_BRANCH
+			}
+			private U.State state = State.RIGHT_BRANCH;
+
+			private Mob.Typical typ = new Mob.Typical();
+			private Vector2 left = new Vector2(-1, 0);
+			private Vector2 forward = new Vector2(0, -1);
+
+			#region Movement Membres
+
+			public Vector2 getMovement(Mob m)
+			{
+				switch (state)
+				{
+					case State.RIGHT_BRANCH:
+						if (m.Position.Y >= Settings.Size.HEIGHT - 24)
+						{
+							state = State.TRANSITION;
+						}
+						return typ.getMovement(m);
+						break;
+					
+					case State.TRANSITION:
+						if (m.Position.X <= 24)
+						{
+							state = State.LEFT_BRANCH;
+						}
+						return left;
+						break;
+
+					default: // LEFT_BRANCH
+						return forward;
+						break;
+				}
 			}
 
 			#endregion
@@ -67,7 +141,7 @@ namespace GameJam.GameObjects
 
 		public override void Update(GameTime gameTime)
 		{
-			Position += mv.getMovement();
+			Position += mv.getMovement(this);
 			sprite.next();
 		}
 
