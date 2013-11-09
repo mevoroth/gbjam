@@ -13,7 +13,7 @@ namespace GameJam.GameObjects
 	{
 		public interface Movement
 		{
-			Vector2 getMovement(Mob m);
+			Vector2 getMovement(Mob m, GameTime gt);
 		}
 
 		public class Typical : Movement
@@ -22,7 +22,7 @@ namespace GameJam.GameObjects
 
 			#region Movement Membres
 
-			public Vector2 getMovement(Mob m)
+			public Vector2 getMovement(Mob m, GameTime gt)
 			{
 				return mv;
 			}
@@ -36,7 +36,7 @@ namespace GameJam.GameObjects
 
 			#region Movement Membres
 
-			public Vector2 getMovement(Mob m)
+			public Vector2 getMovement(Mob m, GameTime gt)
 			{
 				return mv;
 			}
@@ -50,7 +50,7 @@ namespace GameJam.GameObjects
 
 			#region Movement Membres
 
-			public Vector2 getMovement(Mob m)
+			public Vector2 getMovement(Mob m, GameTime gt)
 			{
 				return mv;
 			}
@@ -74,7 +74,7 @@ namespace GameJam.GameObjects
 
 			#region Movement Membres
 
-			public Vector2 getMovement(Mob m)
+			public Vector2 getMovement(Mob m, GameTime gt)
 			{
 				switch (state)
 				{
@@ -83,7 +83,7 @@ namespace GameJam.GameObjects
 						{
 							state = State.TRANSITION;
 						}
-						return typ.getMovement(m);
+						return typ.getMovement(m, gt);
 						break;
 					
 					case State.TRANSITION:
@@ -98,6 +98,42 @@ namespace GameJam.GameObjects
 						return forward;
 						break;
 				}
+			}
+
+			#endregion
+		}
+
+		public class S : Movement
+		{
+			private Mob.Typical typ = new Mob.Typical();
+
+			private int start = -1;
+			private int dir = 1;
+			#region Movement Membres
+
+			public S() { }
+
+			public S(int dir)
+			{
+				this.dir = dir;
+			}
+
+			public Vector2 getMovement(Mob m, GameTime gt)
+			{
+				if (m.Position.Y > Settings.Size.HEIGHT)
+				{
+					return typ.getMovement(m, gt);
+				}
+				if (m.Position.Y > 0)
+				{
+					if (start < 0)
+					{
+						start = 0;
+					}
+					start += gt.ElapsedGameTime.Milliseconds;
+					return new Vector2((float)(dir * Math.Cos(start / 350f)), 1);
+				}
+				return typ.getMovement(m, gt);
 			}
 
 			#endregion
@@ -141,7 +177,7 @@ namespace GameJam.GameObjects
 
 		public override void Update(GameTime gameTime)
 		{
-			Position += mv.getMovement(this);
+			Position += mv.getMovement(this, gameTime);
 			sprite.next();
 		}
 
