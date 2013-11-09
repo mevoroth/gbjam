@@ -3,3 +3,12 @@ Content\player.xnb
 Content\stg01_layer01.xnb
 Content\stg01_layer02.xnb
 Content\stg01_layer03.xnb
+Content\player_backward.xnb
+Content\player_forward.xnb
+Content\player_idle.xnb
+Content\player_left.xnb
+Content\player_right.xnb
+Content\player_backward_left.xnb
+Content\player_backward_right.xnb
+Content\oculusbat.xnb
+Content\oculusbat_hit.xnb

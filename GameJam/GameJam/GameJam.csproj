@@ -113,6 +113,7 @@
     <Compile Include="Components\ScrollingBackground.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Map.cs" />
+    <Compile Include="GameObjects\Mob.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="Levels\AbstractStage.cs" />
     <Compile Include="Levels\Menu.cs" />
