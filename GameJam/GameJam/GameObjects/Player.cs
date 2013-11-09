@@ -17,6 +17,19 @@ namespace GameJam.GameObjects
 {
 	class Player : GameObject
 	{
+		public enum StateX
+		{
+			IDLE,
+			L,
+			R
+		}
+		public enum StateY
+		{
+			IDLE,
+			F,
+			B
+		}
+
 		const int HP = 1;
 		const float SPEED = 2f;
 
@@ -26,6 +39,11 @@ namespace GameJam.GameObjects
 		FixedSprite sprite_backward;
 		FixedSprite sprite_left;
 		FixedSprite sprite_right;
+		FixedSprite sprite_backward_left;
+		FixedSprite sprite_backward_right;
+
+		private StateX s_x = StateX.IDLE;
+		private StateY s_y = StateY.IDLE;
 
 		private Microsoft.Xna.Framework.Game game;
 		private GraphicsDeviceManager gdm;
@@ -35,18 +53,37 @@ namespace GameJam.GameObjects
 			game = g;
 			this.gdm = gdm;
 		}
+
+		public Vector2 Position
+		{
+			set
+			{
+				sprite_idle.Position = value;
+				sprite_forward.Position = value;
+				sprite_backward.Position = value;
+				sprite_left.Position = value;
+				sprite_right.Position = value;
+				sprite_backward_left.Position = value;
+				sprite_backward_right.Position = value;
+				base.Position = value;
+			}
+		}
+
 		public override void Initialize()
 		{
 			//sprite = new FixedSprite((Game)game, "player", 1000);
 			sprite_idle = new FixedSprite((Game)game, "player_idle", 1000);
 			sprite_forward = new FixedSprite((Game)game, "player_forward", 1000);
 			sprite_backward = new FixedSprite((Game)game, "player_backward", 1000);
-			sprite_left = new FixedSprite((Game)game, "player_left", 1000);
-			sprite_right = new FixedSprite((Game)game, "player_right", 1000);
+			sprite_left = new FixedSprite((Game)game, "player_left", 999);
+			sprite_right = new FixedSprite((Game)game, "player_right", 999);
+			sprite_backward_left = new FixedSprite((Game)game, "player_backward_left", 1000);
+			sprite_backward_right = new FixedSprite((Game)game, "player_backward_right", 1000);
 			//sprite = game.Content.Load<Texture2D>("player");
+
 			Size = new Vector2(
-				sprite.Width,
-				sprite.Height
+				sprite_forward.Width,
+				sprite_forward.Height
 			);
 		}
 		public void LoadContent(SpriteBatch sb)
@@ -88,23 +125,87 @@ namespace GameJam.GameObjects
 			{
 				// SECONDARY WEAPON
 			}
-
+			
 			/**
 			 * UPDATE
 			 */
+			// STATE
+			if (y > 0f)
+			{
+				s_y = StateY.B;
+			}
+			else if (y < 0)
+			{
+				s_y = StateY.F;
+			}
+			else
+			{
+				s_y = StateY.IDLE;
+			}
+
+			if (x > 0)
+			{
+				s_x = StateX.R;
+			}
+			else if (x < 0)
+			{
+				s_x = StateX.L;
+			}
+			else
+			{
+				s_x = StateX.IDLE;
+			}
+
 			// POSITION
 			Position = new Vector2(
-				Position.X + x*SPEED,
-				Position.Y + y*SPEED
+				base.Position.X + x*SPEED,
+				base.Position.Y + y*SPEED
 			);
-			sprite.SetPosition(Position);
+			//current_sprite.Position = base.Position;
+
 			// NEXT FRAME
-			sprite.next();
+			//current_sprite.next();
 		}
 		public override void Draw(GameTime gameTime)
 		{
 			//sprite.Draw(SpriteBatch);
-			((Game)game).Layers.Add(sprite);
+			//((Game)game).Layers.Add(current_sprite);
+			if (s_y != StateY.B)
+			{
+				if (s_y == StateY.F)
+				{
+					((Game)game).Layers.Add(sprite_forward);
+				}
+				else
+				{
+					((Game)game).Layers.Add(sprite_idle);
+				}
+
+				if (s_x == StateX.L)
+				{
+					((Game)game).Layers.Add(sprite_left);
+				}
+				else if (s_x == StateX.R)
+				{
+					((Game)game).Layers.Add(sprite_right);
+				}
+			}
+			else
+			{
+				if (s_x == StateX.L)
+				{
+					((Game)game).Layers.Add(sprite_backward_left);
+				}
+				else if (s_x == StateX.R)
+				{
+					((Game)game).Layers.Add(sprite_backward_right);
+				}
+				else
+				{
+					((Game)game).Layers.Add(sprite_backward);
+				}
+			}
+
 			//SpriteBatch.Draw(
 			//    sprite.Texture,
 			//    new Rectangle((int)Position.X, (int)Position.Y, sprite.Width, sprite.Height),
