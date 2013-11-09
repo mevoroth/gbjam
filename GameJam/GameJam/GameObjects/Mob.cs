@@ -131,9 +131,23 @@ namespace GameJam.GameObjects
 						start = 0;
 					}
 					start += gt.ElapsedGameTime.Milliseconds;
-					return new Vector2((float)(dir * Math.Cos(start / 350f)), 1);
+					return new Vector2((float)(dir * 1.5 * Math.Cos(start / 350f)), 1);
 				}
 				return typ.getMovement(m, gt);
+			}
+
+			#endregion
+		}
+
+		public class O : Mob.Movement
+		{
+			private int start = 0;
+			#region Movement Membres
+
+			public Vector2 getMovement(Mob m, GameTime gt)
+			{
+				start += gt.ElapsedGameTime.Milliseconds;
+				return new Vector2((float)Math.Cos(start / 100f), (float)(1f - Math.Sin(start / 100f)));
 			}
 
 			#endregion
@@ -147,6 +161,11 @@ namespace GameJam.GameObjects
 		AnimatedSprite sprite;
 		AnimatedSprite hitsprite;
 
+		public Game Game
+		{
+			get { return game; }
+		}
+
 		public Vector2 Position
 		{
 			get { return base.Position; }
@@ -158,6 +177,11 @@ namespace GameJam.GameObjects
 			}
 		}
 
+		public Movement Behaviour
+		{
+			get { return mv; }
+		}
+
 		public Mob(Game g, GraphicsDeviceManager gdm, Movement mv)
 		{
 			game = g;
@@ -167,8 +191,13 @@ namespace GameJam.GameObjects
 
 		public override void Initialize()
 		{
-			sprite = new AnimatedSprite((Game)game, "oculusbat", 16, 900);
-			hitsprite = new AnimatedSprite((Game)game, "oculusbat_hit", 16, 900);
+			throw new NotImplementedException();
+		}
+
+		public void Initialize(string idle, string hit, int width)
+		{
+			sprite = new AnimatedSprite((Game)game, idle, width, 900);
+			hitsprite = new AnimatedSprite((Game)game, hit, width, 900);
 		}
 
 		public override void UnloadContent()
