@@ -132,73 +132,147 @@ namespace GameJam.Levels
 			 * 5TH WAVE
 			 */
 			// WAVE RIGHT
-			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.Typical());
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.DownLeft());
 			m.Initialize();
 			m.LoadContent(SpriteBatch);
-			m.Position = new Vector2(80, -660);
+			//m.Position = new Vector2(80 + 804, -660 * 2 - 144);
+			m.Position = new Vector2(884, -1464);
 			Enemies.AddLast(m);
 
-			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.Typical());
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.DownLeft());
 			m.Initialize();
 			m.LoadContent(SpriteBatch);
-			m.Position = new Vector2(96, -692);
+			//m.Position = new Vector2(96 + 804, -692 * 2 - 144);
+			m.Position = new Vector2(900, -1528);
 			Enemies.AddLast(m);
 
-			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.Typical());
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.DownLeft());
 			m.Initialize();
 			m.LoadContent(SpriteBatch);
-			m.Position = new Vector2(114, -724);
+			//m.Position = new Vector2(114 + 804, -724 * 2 - 144);
+			m.Position = new Vector2(918, -1592);
 			Enemies.AddLast(m);
 
-			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.Typical());
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.DownLeft());
 			m.Initialize();
 			m.LoadContent(SpriteBatch);
-			m.Position = new Vector2(132, -756);
+			//m.Position = new Vector2(132 + 804, -756 * 2 - 144);
+			m.Position = new Vector2(936, -1656);
 			Enemies.AddLast(m);
 
 			// WAVE LEFT
-			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.Typical());
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.DownRight());
 			m.Initialize();
 			m.LoadContent(SpriteBatch);
-			m.Position = new Vector2(10, -676);
+			//m.Position = new Vector2(10 - 804, -772 * 2 - 144);
+			m.Position = new Vector2(-794, -1688);
 			Enemies.AddLast(m);
 
-			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.Typical());
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.DownRight());
 			m.Initialize();
 			m.LoadContent(SpriteBatch);
-			m.Position = new Vector2(28, -708);
+			//m.Position = new Vector2(28 - 804, -740 * 2 - 144);
+			m.Position = new Vector2(-776, -1624);
 			Enemies.AddLast(m);
 
-			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.Typical());
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.DownRight());
 			m.Initialize();
 			m.LoadContent(SpriteBatch);
-			m.Position = new Vector2(46, -740);
+			//m.Position = new Vector2(46 - 804, -708 * 2 - 144);
+			m.Position = new Vector2(-758, -1560);
 			Enemies.AddLast(m);
 
-			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.Typical());
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.DownRight());
 			m.Initialize();
 			m.LoadContent(SpriteBatch);
-			m.Position = new Vector2(64, -772);
+			//m.Position = new Vector2(64 - 804, -676 * 2 - 144);
+			m.Position = new Vector2(-740, -1496);
 			Enemies.AddLast(m);
 
 			// WAVE TOP
 			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.Typical());
 			m.Initialize();
 			m.LoadContent(SpriteBatch);
-			m.Position = new Vector2(124, -516);
+			m.Position = new Vector2(40, -876);
 			Enemies.AddLast(m);
 
 			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.Typical());
 			m.Initialize();
 			m.LoadContent(SpriteBatch);
-			m.Position = new Vector2(124, -516);
-			Enemies.AddLast(m)
+			m.Position = new Vector2(72, -876);
+			Enemies.AddLast(m);
 
 			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.Typical());
 			m.Initialize();
 			m.LoadContent(SpriteBatch);
-			m.Position = new Vector2(124, -516);
+			m.Position = new Vector2(104, -876);
 			Enemies.AddLast(m);
+
+			/**
+			 * 6TH WAVE
+			 */
+			// FIRST WAVE
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.U());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(120, -1020);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.U());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(120, -1052);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.U());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(120, -1084);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.U());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(120, -1116);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.U());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(120, -1148);
+			Enemies.AddLast(m);
+			
+			// SECOND WAVE
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.U());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(120, -1276);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.U());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(120, -1308);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.U());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(120, -1340);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.U());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(120, -1372);
+			Enemies.AddLast(m);
+
+			m = new Mob((Game)Game, GraphicsDeviceManager, new Mob.U());
+			m.Initialize();
+			m.LoadContent(SpriteBatch);
+			m.Position = new Vector2(120, -1404);
+			Enemies.AddLast(m);
+
 		}
 
 		public void LoadContent(SpriteBatch sb)
