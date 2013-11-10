@@ -16,6 +16,13 @@ namespace GameJam.Components
 
 		private int framelength = 10;
 
+		private bool loop = true;
+
+		public bool Loop
+		{
+			set { loop = value; }
+		}
+
 		public AnimatedSprite(Game game, string asset, int width, int priority)
 			: base(priority)
 		{
@@ -39,7 +46,17 @@ namespace GameJam.Components
 		}
 		public override void next()
 		{
-			currentFrame = (currentFrame + 1) % (frames*framelength);
+			if (loop)
+			{
+				currentFrame = (currentFrame + 1) % (frames * framelength);
+			}
+			else
+			{
+				if (currentFrame < frames * framelength - 1)
+				{
+					++currentFrame;
+				}
+			}
 		}
 		public Rectangle getFrame()
 		{
