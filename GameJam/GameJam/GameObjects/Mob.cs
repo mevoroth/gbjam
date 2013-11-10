@@ -153,13 +153,24 @@ namespace GameJam.GameObjects
 			#endregion
 		}
 
+		const int HP = 1;
+
+		private int hp = HP;
+
+		public int Hp
+		{
+			get { return hp; }
+			set { hp = value; }
+		}
+
 		Game game;
 		GraphicsDeviceManager gdm;
 
 		Movement mv;
 		
-		AnimatedSprite sprite;
-		AnimatedSprite hitsprite;
+		private AnimatedSprite sprite;
+		private AnimatedSprite hitsprite;
+		private AnimatedSprite deathsprite;
 
 		public Game Game
 		{
@@ -172,7 +183,8 @@ namespace GameJam.GameObjects
 			set
 			{
 				sprite.Position = value;
-				hitsprite.Position = value; 
+				hitsprite.Position = value;
+				deathsprite.Position = value - new Vector2(8, 8);
 				base.Position = value;
 			}
 		}
@@ -194,10 +206,16 @@ namespace GameJam.GameObjects
 			throw new NotImplementedException();
 		}
 
-		public void Initialize(string idle, string hit, int width)
+		public void Initialize(string idle, int idlewidth, string hit, int hitwidth, string death, int deathwidth)
 		{
-			sprite = new AnimatedSprite((Game)game, idle, width, 900);
-			hitsprite = new AnimatedSprite((Game)game, hit, width, 900);
+			sprite = new AnimatedSprite((Game)game, idle, idlewidth, 900);
+			hitsprite = new AnimatedSprite((Game)game, hit, hitwidth, 900);
+			deathsprite = new AnimatedSprite((Game)game, death, deathwidth, 900);
+			deathsprite.Loop = false;
+			Size = new Vector2(
+				sprite.Width,
+				sprite.Height
+			);
 		}
 
 		public override void UnloadContent()
@@ -207,12 +225,23 @@ namespace GameJam.GameObjects
 		public override void Update(GameTime gameTime)
 		{
 			Position += mv.getMovement(this, gameTime);
+			if (hp <= 0)
+			{
+				deathsprite.next();
+			}
 			sprite.next();
 		}
 
 		public override void Draw(GameTime gameTime)
 		{
-			((Game)game).Layers.Add(sprite);
+			if (hp <= 0)
+			{
+				((Game)game).Layers.Add(deathsprite);
+			}
+			else
+			{
+				((Game)game).Layers.Add(sprite);
+			}
 		}
 
 		public override void LoadContent(SpriteBatch sb)

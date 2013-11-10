@@ -21,6 +21,19 @@ namespace GameJam.GameObjects
 		GraphicsDeviceManager gdm;
 		FixedSprite sprite;
 
+		public Vector2 Position
+		{
+			get
+			{
+				return base.Position;
+			}
+			set
+			{
+				sprite.Position = value;
+				base.Position = value;
+			}
+		}
+
 		public PlayerShot(Microsoft.Xna.Framework.Game g, GraphicsDeviceManager gdm)
 		{
 			game = g;
@@ -29,6 +42,10 @@ namespace GameJam.GameObjects
 		public override void Initialize()
 		{
 			sprite = new FixedSprite((Game)game, "shot", 1000);
+			Size = new Vector2(
+				sprite.Width,
+				sprite.Height
+			);
 		}
 		public void LoadContent(SpriteBatch sb)
 		{
@@ -39,7 +56,7 @@ namespace GameJam.GameObjects
 		}
 		public override void Update(GameTime gameTime)
 		{
-			sprite.Position += new Vector2(0, -5);
+			Position += new Vector2(0, -5);
 			sprite.next();
 		}
 		public override void Draw(GameTime gameTime)

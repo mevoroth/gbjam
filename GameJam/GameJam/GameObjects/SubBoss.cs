@@ -30,7 +30,7 @@ namespace GameJam.GameObjects
 
 		public override void Initialize()
 		{
-			base.Initialize("oculusbat_big", "oculusbat_hit", 32);
+			base.Initialize("oculusbat_big", 32, "oculusbat_hit", 32, "oculusbat_death", 32);
 			//sprite = new AnimatedSprite((Game)Game, "oculusbat_big", 16, 900);
 		}
 

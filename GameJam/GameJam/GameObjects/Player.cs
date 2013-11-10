@@ -48,11 +48,27 @@ namespace GameJam.GameObjects
 		private bool primary = false;
 		public bool Primary
 		{
-			get { return primary; }
+			get
+			{
+				if (primary)
+				{
+					primary = false;
+					weapon_cd = 0;
+					return true;
+				}
+				return primary;
+			}
 		}
 
 		private Microsoft.Xna.Framework.Game game;
 		private GraphicsDeviceManager gdm;
+
+		/**
+		 * Weapon cooldown
+		 * 5 sec
+		 */
+		const int WEAPON_MIN_CD = 100;
+		private int weapon_cd = WEAPON_MIN_CD;
 
 		public Player(Microsoft.Xna.Framework.Game g, GraphicsDeviceManager gdm)
 		{
@@ -101,6 +117,8 @@ namespace GameJam.GameObjects
 		}
 		public override void Update(GameTime gameTime)
 		{
+			weapon_cd += gameTime.ElapsedGameTime.Milliseconds;
+
 			float x = 0;
 			float y = 0;
 
@@ -123,12 +141,7 @@ namespace GameJam.GameObjects
 			{
 				++x;
 			}
-			primary = Keyboard.GetState().IsKeyDown(Controls.Get.Primary);
-			//if (Keyboard.GetState().IsKeyDown(Controls.Get.Primary))
-			//{
-			//    // PRIMARY WEAPON
-			//    primary = true;
-			//}
+			primary = (weapon_cd > WEAPON_MIN_CD) && Keyboard.GetState().IsKeyDown(Controls.Get.Primary);
 			if (Keyboard.GetState().IsKeyDown(Controls.Get.Secondary))
 			{
 				// SECONDARY WEAPON
