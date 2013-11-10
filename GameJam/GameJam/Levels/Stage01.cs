@@ -27,10 +27,11 @@ namespace GameJam.Levels
 			base.Initialize();
 			//LoadMap("stg01_background");
 			LoadMap(new Components.Layer[] {
-				new Components.FixedSprite((Game)Game, "stg01_layer03", 10000),
+				new Components.FixedBackground((Game)Game, "stg01_layer03", 10000),
 				new Components.ScrollingBackground((Game)Game, "stg01_layer02", 2, 990),
 				new Components.ScrollingBackground((Game)Game, "stg01_layer01", 6, 9990)
 			});
+			Map.Active = false;
 
 			InitializeBGM("bgm_off", "bgm_on");
 			Bgm1.Play();

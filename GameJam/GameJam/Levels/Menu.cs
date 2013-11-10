@@ -61,8 +61,8 @@ namespace GameJam.Levels
 				bgm.Volume = vol;
 			}
 			bgm.Stop();
-			Stage01_Boss stg01 = new Stage01_Boss(this.Game, GraphicsDeviceManager);
-			//Stage01 stg01 = new Stage01(this.Game, GraphicsDeviceManager);
+			//Stage01_Boss stg01 = new Stage01_Boss(this.Game, GraphicsDeviceManager);
+			Stage01 stg01 = new Stage01(this.Game, GraphicsDeviceManager);
 			stg01.Initialize();
 			stg01.LoadContent(SpriteBatch);
 			((Game)this.Game).LoadStage(stg01);

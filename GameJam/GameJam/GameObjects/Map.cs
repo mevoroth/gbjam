@@ -17,12 +17,18 @@ namespace GameJam.GameObjects
 	{
 		// HACK :/
 		private Vector2 previous = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
+		private bool active = true;
 
 		Microsoft.Xna.Framework.Game game;
 		GraphicsDeviceManager gdm;
 		//Texture2D texture;
 		//ScrollingBackground layer;
 		LinkedList<Layer> layers;
+
+		public bool Active
+		{
+			set { active = value; }
+		}
 
 		public Vector2 Position
 		{
@@ -32,6 +38,12 @@ namespace GameJam.GameObjects
 				for (int i = 0, c = layers.Count; i < c; ++i)
 				{
 					layers.ElementAt<Layer>(i).Position = value;
+				}
+
+				if (!active)
+				{
+					base.Position = value;
+					return;
 				}
 
 				// SCROLLING HACK
