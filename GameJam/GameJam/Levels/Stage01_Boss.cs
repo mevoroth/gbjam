@@ -31,7 +31,15 @@ namespace GameJam.Levels
 		{
 			base.LoadContent(sb);
 			Player.Position = StartPoint;
-			LoadMap("stg01_background");
+			LoadMap(new Components.Layer[] {
+				new Components.ScrollableBackground((Game)Game, "stg01boss_layer01", 10000),
+				new Components.ScrollableBackground((Game)Game, "stg01boss_layer02", 9990),
+				new Components.ScrollableBackground((Game)Game, "stg01boss_layer03", 9980)
+			});
+
+			InitializeBGM("bgm_off", "bgm_on");
+			Bgm1.Play();
+			Bgm2.Play();
 		}
 
 		public override void UnloadContent()
@@ -42,6 +50,31 @@ namespace GameJam.Levels
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
+
+			float x = 0;
+			float y = 0;
+
+			if (Player.Position.X > Size.WIDTH - 21)
+			{
+				x = 1;
+			}
+			else if (Player.Position.X < 21)
+			{
+				x = -1;
+			}
+
+			if (Player.Position.Y > Size.HEIGHT - 21)
+			{
+				y = 1;
+			}
+			else if (Player.Position.Y < 21)
+			{
+				y = -1;
+			}
+
+			Map.Position += new Vector2(
+				x, y
+			);
 		}
 
 		public override void Draw(GameTime gameTime)
