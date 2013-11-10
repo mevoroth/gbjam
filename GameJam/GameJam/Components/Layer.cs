@@ -28,7 +28,7 @@ namespace GameJam.Components
 			get { return priority; }
 		}
 
-		public Vector2 Position
+		public virtual Vector2 Position
 		{
 			get { return position; }
 			set { position = value; }

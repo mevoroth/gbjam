@@ -15,11 +15,50 @@ namespace GameJam.GameObjects
 {
 	class Map : GameObject
 	{
+		// HACK :/
+		private Vector2 previous = new Vector2(float.NegativeInfinity, float.NegativeInfinity);
+
 		Microsoft.Xna.Framework.Game game;
 		GraphicsDeviceManager gdm;
 		//Texture2D texture;
 		//ScrollingBackground layer;
 		LinkedList<Layer> layers;
+
+		public Vector2 Position
+		{
+			get { return base.Position; }
+			set
+			{
+				for (int i = 0, c = layers.Count; i < c; ++i)
+				{
+					layers.ElementAt<Layer>(i).Position = value;
+				}
+
+				// SCROLLING HACK
+				Vector2 v = layers.ElementAt<Layer>(0).Position;
+				Vector2 newPos = new Vector2();
+
+				if (v.X != previous.X)
+				{
+					newPos.X = value.X;
+				}
+				else
+				{
+					newPos.X = base.Position.X;
+				}
+
+				if (v.Y != previous.Y)
+				{
+					newPos.Y = value.Y;
+				}
+				else
+				{
+					newPos.Y = base.Position.Y;
+				}
+				previous = v;
+				base.Position = newPos;
+			}
+		}
 
 		public Map(Microsoft.Xna.Framework.Game g, GraphicsDeviceManager gdm)
 		{
